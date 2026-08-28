@@ -1,0 +1,12 @@
+Scenario 1: MSYS contention, clean loser, and release
+winner_pid=334235 publication=directory contender_rc=1 nested_owner_dirs=0 ln_called=no
+lock_exists_after_release=no
+
+Scenario 2: MSYS stale-lock recovery cleans prior generated owner dir
+oldpid=999999 newpid=334284 nested_exists_after=no lock_exists_after_recovery=no ln_called=no
+
+Scenario 3: MSYS steal-lock fencing blocks stale takeover while .steal is live
+steal_rc=1 lockpid=999999 stealpid=334340 ln_called=no
+
+Scenario 4: Cygwin still publishes a symlink lock
+publication_while_held=symlink ln_called=yes
