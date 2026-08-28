@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+printf 'used\n' > "${FM_TEST_LN_USED:?}"
+exit 97

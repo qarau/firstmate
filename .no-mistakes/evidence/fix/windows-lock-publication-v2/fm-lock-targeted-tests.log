@@ -1,0 +1,20 @@
+targeted lock behavior tests on 2026-08-28T12:14:40Z
+repo=/home/gumatua/.no-mistakes/worktrees/a2894ed95de9/01M141S8H1JBMBE6ZCN573F0WK
+commit=2fccae0f5cd3091b9195db75bae2ed814cc402d0
+
+ok - concurrent fm_lock_try_acquire yields exactly one winner
+ok - dead-pid stale lock is reclaimed by a single acquirer
+ok - concurrent stale-lock steal yields exactly one winner
+ok - live steal mutex is not reclaimed
+ok - live-held lock is not stolen
+ok - empty mid-acquire lock keeps a minimum grace
+ok - late original claimant cannot claim a recreated lock
+ok - paused mid-acquire claimant backs off to active stealer
+ok - MSYS lock concurrency uses one clean directory winner
+ok - MSYS abandoned directory locks are reclaimed cleanly
+ok - MSYS live steal mutex is not reclaimed
+ok - MSYS stale lock recovery removes generated nested owner dirs
+ok - MSYS stale lock recovery refuses empty nested owner dirs
+ok - MSYS stale lock recovery refuses foreign nested content
+ok - Cygwin keeps symlink-based lock publication
+ok - symlink contention cleans nested owner links

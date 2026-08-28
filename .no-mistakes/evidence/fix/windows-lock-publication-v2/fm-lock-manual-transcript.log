@@ -1,0 +1,54 @@
+manual lock publication transcript on 2026-08-28T12:16:14Z
+commit=2fccae0f5cd3091b9195db75bae2ed814cc402d0
+host_uname=Linux
+
+CASE 1: fake MSYS acquire/release uses a directory lock and never calls ln -s
+acquire=ok
+lock_is_directory=yes
+ln_stub_used=no
+published_files=pid 
+
+release=ok
+lock_removed_after_release=yes
+
+CASE 2: fake MSYS stale migration removes only generated nested owner artifacts
+before:
+d  -> 
+d .contend.lock.owner.stale123 -> 
+f .contend.lock.owner.stale123/fm-home -> 
+f .contend.lock.owner.stale123/pid -> 
+f pid -> 
+acquire=ok
+recovered_pid=2147483647
+lock_is_directory=yes
+release=ok
+lock_removed_after_release=yes
+after:
+(missing)
+
+CASE 3: fake MSYS stale migration refuses an empty matching nested directory
+acquire=refused
+lock_present=yes
+nested_present=yes
+remaining_tree:
+d  -> 
+d .contend.lock.owner.stale123 -> 
+f pid -> 
+
+CASE 4: fake MSYS stale migration refuses unknown nested content
+acquire=refused
+lock_present=yes
+foreign_present=yes
+remaining_tree:
+d  -> 
+d .contend.lock.owner.stale123 -> 
+f .contend.lock.owner.stale123/foreign.txt -> 
+f pid -> 
+
+CASE 5: fake Cygwin keeps symlink publication and exercises ln -s
+acquire=ok
+lock_is_symlink=yes
+link_target=/home/gumatua/.no-mistakes/evidence/01M141S8H1JBMBE6ZCN573F0WK/fm-lock-manual-20260828T121614Z/05-cygwin-symlink-publication/state/.contend.lock.owner.NSmxV8
+ln_stub_used=yes
+release=ok
+lock_removed_after_release=yes
